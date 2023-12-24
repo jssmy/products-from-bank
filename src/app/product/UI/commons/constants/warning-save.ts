@@ -1,7 +1,7 @@
 import { Alert } from "src/app/commons/interfaces/alert";
 
 export const WARNING_SAVE: Alert = {
-    title: '¿Estas seguro crear este nuevo producto?',
+    title: '¿Estas seguro de guardar el producto?',
     buttons: [
         {
             label: 'Cancelar',

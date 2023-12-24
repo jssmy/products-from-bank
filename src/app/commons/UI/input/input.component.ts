@@ -20,9 +20,9 @@ import { InputType } from '../../types/input-type';
   ]
 })
 export class InputComponent implements ControlValueAccessor {
-  @Input() label: string = '';
-  @Input() placeholder: string = '';
-  @Input() error: string = ''
+  @Input() label = '';
+  @Input() placeholder = '';
+  @Input() error = ''
   @Input() type: InputType = 'text';
   @Input() readonly = false;
   value: any;

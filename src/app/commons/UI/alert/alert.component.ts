@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Alert } from '../../interfaces/alert';
 import { CommonModule } from '@angular/common';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-alert',

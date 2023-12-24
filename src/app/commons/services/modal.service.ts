@@ -1,6 +1,4 @@
 import { Injectable, ComponentFactoryResolver, ApplicationRef, Injector, EmbeddedViewRef, Type } from '@angular/core';
-import { AlertComponent } from '../UI/alert/alert.component';
-import { WARNING_DELETE } from 'src/app/product/UI/commons/constants/warning-delete';
 
 @Injectable({
   providedIn: 'root'

@@ -34,38 +34,9 @@
 }
 
 tr>td { 
-    padding: 20px;
+    padding: 15px;
 }
 
-
-
-.paginator {
-    list-style: none;
-    padding: 0;
-    display: flex;
-  }
-
-  .paginator li {
-    margin: 0 5px;
-    display: flex;
-    align-items: center;
-  }
-
-  .paginator button {
-    padding: 8px 12px;
-    cursor: pointer;
-    color: white;
-    border: none;
-    border-radius: $border-radius;
-    outline: none;
-    font-weight: bolder;
-  }
-
-  .paginator button:hover {
-    background-color: $primary-color;
-  }
-
-  .paginator button:disabled {
-    background-color: $default-color;
-    cursor: not-allowed;
-  }
+.paginator-limit {
+    height: 41px;
+}

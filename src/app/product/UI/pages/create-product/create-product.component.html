@@ -8,6 +8,7 @@
             <div class="flex-row">
                 <div class="w-50 p-10">
                     <app-input
+                        [readonly]="!!product"
                         (change)="validateIdUnique()"
                         [error]="presenter.id.errors | controlError:presenter.controlError.id:presenter.id.touched"
                         formControlName="id"

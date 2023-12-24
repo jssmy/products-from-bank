@@ -8,7 +8,10 @@ describe('PaginatorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PaginatorComponent ]
+      declarations: [],
+      imports: [
+        PaginatorComponent
+      ]
     })
     .compileComponents();
 
@@ -19,5 +22,14 @@ describe('PaginatorComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('se vuelve a calcular el paginador cuando se cambian los datos de entrada', () => {
+    component.total = 100;
+    component.page = 1;
+    component.display = 5;
+    component.ngOnChanges(null);
+    fixture.detectChanges();
+    expect(component.items.length).toBeGreaterThan(0);
   });
 });

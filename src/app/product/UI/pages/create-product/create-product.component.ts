@@ -12,6 +12,7 @@ import { WARNING_SAVE } from '../../commons/constants/warning-save';
 import { ERROR_SAVE } from '../../commons/constants/error-save';
 import { SUCCESS_SAVE } from '../../commons/constants/success-save';
 import { Alert } from 'src/app/commons/interfaces/alert';
+import { Product } from 'src/app/product/domain/models/product/product';
 
 @Component({
   selector: 'app-create-product',
@@ -29,29 +30,28 @@ import { Alert } from 'src/app/commons/interfaces/alert';
   styleUrls: ['./create-product.component.scss']
 })
 export class CreateProductComponent implements OnInit, OnDestroy {
-  private subscription$ = new Subscription();
+  private $subscriptions: Subscription[] = [];
+  product: Product;
   constructor(
     public readonly presenter: CreateProductPresenter,
     private readonly productUseCase: ProductUseCase,
-    private readonly modal: ModalService
+    private readonly modal: ModalService,
   ) { }
 
   ngOnInit(): void {
-
-
+    this.product = this.productUseCase.getSelectedProduct();
+    this.presenter.init(this.product);
   }
 
   onSubmint() {
     const reference = this.modal.open(AlertComponent, { config: WARNING_SAVE });
 
-    reference.instance.onDismis
+    const subs = reference.instance.onDismis
       .pipe(
         tap(() => reference.destroy()),
         filter(confirm => confirm)
       ).subscribe(() => {
-        this.productUseCase.save(
-          this.presenter.getProduct()
-        )
+        const sb = this.getOperation()
           .subscribe({
             next: () => {
               this.presenter.form.reset();
@@ -59,16 +59,28 @@ export class CreateProductComponent implements OnInit, OnDestroy {
             },
             error: () => this.simpleModal(ERROR_SAVE)
           });
+
+        this.$subscriptions.push(sb);
       });
 
+    this.$subscriptions.push(subs);
+
   }
 
-  private simpleModal(alert: Alert) {
-    const reference = this.modal.open(AlertComponent, { config: alert});
-              reference.instance.onDismis
-              .subscribe(() => reference.destroy());
+  private getOperation() {
+    if (this.product) {
+      return this.productUseCase.update(this.presenter.getProduct())
+    }
+    return this.productUseCase.save(this.presenter.getProduct());
   }
-  
+
+
+  private simpleModal(alert: Alert) {
+    const reference = this.modal.open(AlertComponent, { config: alert });
+    reference.instance.onDismis
+      .subscribe(() => reference.destroy());
+  }
+
 
   validateIdUnique() {
     this.presenter.form.disable();
@@ -90,9 +102,11 @@ export class CreateProductComponent implements OnInit, OnDestroy {
 
   clear() {
     this.presenter.form.reset();
+    this.presenter.init(this.product);
   }
 
   ngOnDestroy(): void {
-    this.subscription$.unsubscribe();
+    this.$subscriptions.forEach(sub => sub.unsubscribe());
+    this.productUseCase.setSelectedProduct(null);
   }
 }

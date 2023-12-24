@@ -1,7 +1,6 @@
-import { Inject, Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { ProductGateway } from "../models/product/gateway/product-gateway";
 import { Product } from "../models/product/product";
-import { ProductService } from "../../infraestructure/driven-adapter/api/product.service";
 
 @Injectable({
     providedIn: 'root'
@@ -19,8 +18,8 @@ export class ProductUseCase {
         return this.productGateway.save(product);
     }
 
-    getByName(name: string) {
-        return this.getAll();
+    update(product: Product) {
+        return this.productGateway.update(product);
     }
 
     delete(id: string)  {
@@ -29,6 +28,14 @@ export class ProductUseCase {
 
     exist(id: string)  {
         return this.productGateway.exist(id);
+    }
+
+    setSelectedProduct(product: Product) {
+        this.productGateway.setSelectedProduct(product);
+    }
+
+    getSelectedProduct() {
+        return this.productGateway.getSelectedProduct();
     }
 
 }

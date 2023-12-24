@@ -1,0 +1,40 @@
+@import "./../../../../assets/variables.scss";
+
+.paginator {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    margin: 0px;
+  }
+
+  .paginator li {
+    margin: 0 5px;
+    display: flex;
+    align-items: center; 
+
+  }
+
+  .paginator button {
+    cursor: pointer;
+    background-color: $default-color;
+    
+    border: none;
+    border-radius: 4px;
+    outline: none;
+  }
+
+
+  .paginator button:disabled {
+    background-color: $default-color;
+    cursor: not-allowed;
+  }
+
+  .paginator-pages > button{
+        margin: 5px;
+        width: 41px;
+        text-align: center;
+  }
+
+  .active {
+    background-color: $primary-color !important;
+  }

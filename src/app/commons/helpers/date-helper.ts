@@ -7,7 +7,16 @@ export class DateHelper {
 
     public static stringToMomentDate(
         stringDate: string
-    ): moment.Moment {
+    ): moment.Moment | null{
+        if (!stringDate) {
+            return null;
+        }
+
+        if (stringDate.includes('+')) {
+            const dates = stringDate.split('+');
+            const [date] = dates;
+            return moment(date);   
+        }
         return moment(stringDate)
     }
 }
