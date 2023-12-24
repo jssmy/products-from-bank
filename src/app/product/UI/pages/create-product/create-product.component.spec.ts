@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CreateProductComponent } from './create-product.component';
 import { ProductGateway } from 'src/app/product/domain/models/product/gateway/product-gateway';
 import { ProductService } from 'src/app/product/infraestructure/driven-adapter/api/product.service';
