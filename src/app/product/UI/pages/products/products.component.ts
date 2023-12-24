@@ -11,6 +11,7 @@ import { Subscription, filter, switchMap, tap } from 'rxjs';
 import { Router, RouterModule } from '@angular/router';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PaginatorComponent } from 'src/app/commons/UI/paginator/paginator.component';
+import { PRODUCT_DROPDOWN } from '../../commons/constants/product-dropdown';
 
 @Component({
   selector: 'app-products',
@@ -35,16 +36,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   currentPage = 1;
   total = 0;
   formSearch = new FormGroup({ search: new FormControl() });
-  dropItems: ButtonOption[] = [
-    {
-      key: 'update',
-      label: 'Modificar'
-    },
-    {
-      key: 'delete',
-      label: 'Eliminar'
-    },
-  ];
+  dropItems = PRODUCT_DROPDOWN;
 
   $subscriptions: Subscription[] = [];
   constructor(
@@ -129,7 +121,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   onPaginate(page: number) {
     this.currentPage = Number(page);
-    console.log(this.currentPage, this.products);
     this.filterProducts = this.paginateProducts(
       [...this.products]
     );

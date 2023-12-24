@@ -25,6 +25,7 @@ export class InputComponent implements ControlValueAccessor {
   @Input() error = ''
   @Input() type: InputType = 'text';
   @Input() readonly = false;
+  @Input() idHtml: string;
   value: any;
   onChange: any = () => { };
   onTouch: any = () => { };

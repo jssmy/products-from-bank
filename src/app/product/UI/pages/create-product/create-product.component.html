@@ -8,6 +8,7 @@
             <div class="flex-row">
                 <div class="w-50 p-10">
                     <app-input
+                        idHtml="inputIdenitifier"
                         [readonly]="!!product"
                         (change)="validateIdUnique()"
                         [error]="presenter.id.errors | controlError:presenter.controlError.id:presenter.id.touched"
@@ -61,7 +62,7 @@
                     <button class="btn pull-rigth" (click)="clear()">Reiniciar</button>
                 </div>
                 <div class="w-50 p-10">
-                    <button [disabled]="presenter.form.invalid"
+                    <button id="btn-send" [disabled]="presenter.form.invalid"
                             (click)="onSubmint()"
                             class="btn btn-primary pull-left">Enviar</button>
                 </div>
