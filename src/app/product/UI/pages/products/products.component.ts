@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 import { DropdownComponent } from 'src/app/commons/UI/dropdown/dropdown.component';
 import { WARNING_DELETE } from '../../commons/constants/warning-delete';
 import { ModalService } from 'src/app/commons/services/modal.service';
-import { ButtonOption } from 'src/app/commons/interfaces/button-option';
 import { AlertComponent } from 'src/app/commons/UI/alert/alert.component';
 import { Subscription, filter, switchMap, tap } from 'rxjs';
 import { Router, RouterModule } from '@angular/router';
@@ -52,6 +51,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   loadProducts() {
     this.productUseCase.getAll()
       .subscribe(product => {
+        this.currentPage = 1;
         this.products = product;
         this.filterProducts = this.paginateProducts(
           [...this.products]

@@ -6,10 +6,15 @@ import { LayoutComponent } from './commons/UI/layout/layout.component';
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'prefix',
+    redirectTo: 'products'
+  },
+  {
+    path: 'products',
     component: LayoutComponent,
     children: [
       {
-        path: 'products',
+        path: '',
         loadComponent: () => import('./product/UI/pages/products/products.component').then(component => component.ProductsComponent)
       },
       {
