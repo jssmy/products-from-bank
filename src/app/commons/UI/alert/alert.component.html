@@ -1,0 +1,14 @@
+<div class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-title">
+            {{config.title}}
+        </div>
+        <hr>
+        <div class="alert-buttons flex-row justify-content-space-between">
+            <ng-container *ngFor="let button of config.buttons">
+                <button (click)="onClick(button.key)" class="btn w-40" [ngClass]="button.class">
+                    {{button.label}}</button>
+            </ng-container>
+        </div>
+    </div>
+</div>

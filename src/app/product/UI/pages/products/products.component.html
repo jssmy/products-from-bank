@@ -1,6 +1,63 @@
-<div class="products-container">
-    <div class="search-container"></div>
-    <div class="data-table-container">
-        
+<div class="datatable-container">
+    <div class="table-search">
+        <form [formGroup]="formSearch">
+            <input type="text"
+                    formControlName="search"
+                    (change)="searchProduct($event)"
+                    class="search-control"
+                    placeholder="Presione enter para buscar...">
+        </form>
+        <button class="btn btn-primary" routerLink="/create">Agregar</button>
+    </div>
+    <div class="table-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Logo</td>
+                    <td>Nombre del producto</td>
+                    <td>Descripción</td>
+                    <td>Fecha de liberación</td>
+                    <td>Fecha de restructuración</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of filterProducts">
+                    <td>
+                        <img class="product-logo" [src]="product.logo">
+                    </td>
+                    <td>
+                        {{product.name}}
+                    </td>
+                    <td>
+                        {{product.description}}
+                    </td>
+                    <td>
+                        {{product.date_release}}
+                    </td>
+                    <td>
+                        {{product.date_revision}}
+                    </td>
+                    <td>
+                        <app-dropdown  (click)="onSelect(product)" (onChange)="onSelectOption($event)" [items]="dropItems"></app-dropdown>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <ul class="paginator">
+            <li><button class="btn" disabled>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                    <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                  </svg>
+            </button></li>
+            <li><span id="currentPage">1</span></li>
+            <li><button class="btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
+                    <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
+                  </svg>
+            </button></li>
+          </ul>
     </div>
 </div>

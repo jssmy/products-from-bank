@@ -1,1 +1,71 @@
-<p>create-product works!</p>
+<div class="flex-column align-items-center">
+    <div class="form-container w-60">
+        <div class="form-title">
+            <h1 class="text-center">Formulario de Registro</h1>
+        </div>
+        <hr>
+        <form  [formGroup]="presenter.form" class="form-content">
+            <div class="flex-row">
+                <div class="w-50 p-10">
+                    <app-input
+                        (change)="validateIdUnique()"
+                        [error]="presenter.id.errors | controlError:presenter.controlError.id:presenter.id.touched"
+                        formControlName="id"
+                        label="ID">
+                    </app-input>
+                </div>
+                <div class="w-50 p-10">
+                    <app-input
+                        [error]="presenter.name.errors| controlError:presenter.controlError.name:presenter.name.touched"
+                        formControlName="name"
+                        label="Nombre"></app-input>
+                </div>
+            </div>
+
+            <div class="flex-row">
+                <div class="w-50 p-10">
+                    <app-input
+                        [error]="presenter.description.errors| controlError:presenter.controlError.description:presenter.description.touched"
+                        formControlName="description"
+                        label="Descripción"></app-input>
+                </div>
+                <div class="w-50 p-10">
+                    <app-input
+                        [error]="presenter.logo.errors| controlError:presenter.controlError.logo:presenter.logo.touched"
+                        formControlName="logo" label="Logo">
+                    </app-input>
+                </div>
+                
+            </div>
+
+            <div class="flex-row">
+                <div class="w-50 p-10">
+                    <app-input
+                        type="date"
+                        (change)="changeDateLiberaton()"
+                        [error]="presenter.dateLiberation.errors| controlError:presenter.controlError.dateLiberation:presenter.dateLiberation.touched"
+                        formControlName="dateLiberation"  label="Fecha Liberación"></app-input>
+                </div>
+                <div class="w-50 p-10">
+                    <app-input
+                        type="date"
+                        [readonly]="true"
+                        [error]="presenter.dateRevision.errors| controlError:presenter.controlError.dateRevision:presenter.dateRevision.touched"
+                        formControlName="dateRevision"  label="Fecha Revisión"></app-input>
+                </div>
+            </div>
+
+            <div class=" flex-row justify-content-center">
+                <div class="w-50 p-10">
+                    <button class="btn pull-rigth" (click)="clear()">Reiniciar</button>
+                </div>
+                <div class="w-50 p-10">
+                    <button [disabled]="presenter.form.invalid"
+                            (click)="onSubmint()"
+                            class="btn btn-primary pull-left">Enviar</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

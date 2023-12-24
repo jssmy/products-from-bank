@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LayoutComponent } from './common/UI/layout/layout.component';
+import { LayoutComponent } from './commons/UI/layout/layout.component';
 
 
 const routes: Routes = [
@@ -11,6 +11,10 @@ const routes: Routes = [
       {
         path: 'products',
         loadComponent: () => import('./product/UI/pages/products/products.component').then(component => component.ProductsComponent)
+      },
+      {
+        path: 'create',
+        loadComponent: () => import('./product/UI/pages/create-product/create-product.component').then(component => component.CreateProductComponent)
       }
     ]
   }

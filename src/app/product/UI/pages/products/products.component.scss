@@ -1,0 +1,71 @@
+@import "./../../../../../assets/variables.scss";
+
+.table {
+    border-collapse: collapse;
+    width: 100%;
+
+    thead {
+        font-weight: bold;
+        
+        font-size: 18px;
+        background-color: $background-color !important;
+
+        tr>td {
+            color: $header-table-color !important;
+            padding: 20px;
+        }
+    }
+}
+
+.table-container {
+    padding: 20px;
+    background-color: white;
+}
+
+.table-search {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+
+.product-logo {
+    width: 50px;
+}
+
+tr>td { 
+    padding: 20px;
+}
+
+
+
+.paginator {
+    list-style: none;
+    padding: 0;
+    display: flex;
+  }
+
+  .paginator li {
+    margin: 0 5px;
+    display: flex;
+    align-items: center;
+  }
+
+  .paginator button {
+    padding: 8px 12px;
+    cursor: pointer;
+    color: white;
+    border: none;
+    border-radius: $border-radius;
+    outline: none;
+    font-weight: bolder;
+  }
+
+  .paginator button:hover {
+    background-color: $primary-color;
+  }
+
+  .paginator button:disabled {
+    background-color: $default-color;
+    cursor: not-allowed;
+  }

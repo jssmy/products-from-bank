@@ -1,0 +1,25 @@
+@import './../../../../assets/variables.scss';
+
+.form-control {
+    display: inline-grid;
+    width: 100%;
+    label {
+        font-weight: bold;
+    }
+    input {
+        margin-top: 5px;
+        height: $height-default-input;
+        border-radius: $border-radius;
+        border-color: $border-input-color;
+        border: 2px solid $border-input-color;
+        min-width: 50px;
+        padding: $padding-input;
+        
+    }
+}
+
+.error {
+    color: rgb(159, 23, 23);
+    font-size: 12px;
+    font-weight: 500;
+}

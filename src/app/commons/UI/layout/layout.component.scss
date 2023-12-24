@@ -1,0 +1,15 @@
+@import "./../../../../assets/variables.scss";
+.main > .header {
+    display: flex;
+    justify-content: center;
+    margin: 30px;
+    img  {
+        width: 200px;
+    }
+}
+
+.container {
+    background-color: $background-color;
+    padding: 5em 2em 5em 2em;
+}
+

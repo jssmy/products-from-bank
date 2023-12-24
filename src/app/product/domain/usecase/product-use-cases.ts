@@ -23,4 +23,12 @@ export class ProductUseCase {
         return this.getAll();
     }
 
+    delete(id: string)  {
+        return this.productGateway.delete(id);
+    }
+
+    exist(id: string)  {
+        return this.productGateway.exist(id);
+    }
+
 }
