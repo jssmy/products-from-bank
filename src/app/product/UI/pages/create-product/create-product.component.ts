@@ -54,7 +54,9 @@ export class CreateProductComponent implements OnInit, OnDestroy {
         const sb = this.getOperation()
           .subscribe({
             next: () => {
-              this.presenter.form.reset();
+
+              if(! this.product) this.presenter.form.reset();
+
               this.simpleModal(SUCCESS_SAVE);
             },
             error: () => this.simpleModal(ERROR_SAVE)

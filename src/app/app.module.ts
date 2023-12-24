@@ -5,7 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductGateway } from './product/domain/models/product/gateway/product-gateway';
 import { ProductService } from './product/infraestructure/driven-adapter/api/product.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { LoaderInterceptor } from './commons/interceptors/loader.interceptor';
 
 
 @NgModule({
@@ -21,7 +22,12 @@ import { HttpClientModule } from '@angular/common/http';
     {
       provide: ProductGateway,
       useClass: ProductService
-    }
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
+      multi: true
+    },
   ],
   bootstrap: [AppComponent]
 })

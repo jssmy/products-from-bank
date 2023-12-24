@@ -12,10 +12,10 @@ export class ModalService {
   ) { }
 
 
-  open<T>(template: Type<T>, config: object) {
+  open<T>(template: Type<T>, config?: object) {
     const factory = this.resolver.resolveComponentFactory(template);
     const componentRef = factory.create(this.injector);
-    const keys = Object.keys(config);
+    const keys = Object.keys(config || {});
 
     for(const key of keys) {
       componentRef.instance[key] = config[key];
